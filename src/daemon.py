@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*- 
 
-import os, sys, signal, atexit, time
+import os, sys, signal, atexit, time, subprocess
 #from functools import wraps
 
 import syslog
@@ -111,7 +111,8 @@ class DaemonRunner(Daemon):
 	def run(self):
 		while True:
 			#로직 작성.
-      #time을 이용한 정기 체크를 이용하고 있음.
+			#time을 이용한 정기 체크를 이용하고 있음.
+			subprocess.call('python3 sendmail.py email', shell=True)
 			time.sleep(600)
 
 @Decorator	
